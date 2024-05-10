@@ -1,11 +1,16 @@
 import { useState } from 'react'
+import GeneralInfo from './components/GeneralInfo'
+import EducationInfo from './components/EducationInfo'
+import PracticalInfo from './components/PracticalInfo' 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1>hello</h1>
+      <h1>CV</h1>
+      <GeneralInfo />
+      <EducationInfo />
+      <PracticalInfo />
     </>
   )
 }

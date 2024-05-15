@@ -1,6 +1,6 @@
 import React from 'react'
 
-function EducationInfo() {
+function EducationInfo({educationInfo, setEducationInfo}) {
   return (
     <div>EducationInfo</div>
   )

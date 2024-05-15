@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PracticalInfo() {
+function PracticalInfo({practicalInfo, setPracticalInfo}) {
   return (
     <div>PracticalInfo</div>
   )

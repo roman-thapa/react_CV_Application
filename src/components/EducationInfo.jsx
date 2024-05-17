@@ -58,9 +58,9 @@ function EducationInfo({educationInfo, setEducationInfo}) {
           </form>
         ) : (
           <div>
-            <p>School: {formState.name}</p>
-            <p>Title: {formState.email}</p>
-            <p>Date: {formState.phone}</p>
+            <p>School: {formState.school}</p>
+            <p>Title: {formState.title}</p>
+            <p>Date: {formState.date}</p>
             <button onClick={handleEdit}>Edit</button>
           </div>
         )}

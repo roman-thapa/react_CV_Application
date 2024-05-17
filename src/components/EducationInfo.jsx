@@ -12,10 +12,12 @@ function EducationInfo({educationInfo, setEducationInfo}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsEditing((prev) => !prev);
+    setEducationInfo(formState)
   };
 
   const handleEdit = () =>{
-    setIsEditing(prev=>!prev)
+    setIsEditing(prev=>!prev)   
+    console.log(educationInfo)
   }
   return (
     <>

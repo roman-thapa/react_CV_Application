@@ -12,12 +12,15 @@ function GeneralInfo({ generalInfo, setGeneralInfo }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsEditing((prev) => !prev);
+    setGeneralInfo(formState);
+    
   };
 
-  const handleEdit = () =>{
-    setIsEditing(prev=>!prev)
-  }
-  
+  const handleEdit = () => {
+    setIsEditing((prev) => !prev);
+    console.log(generalInfo)
+  };
+
   return (
     <>
       <div>
@@ -55,9 +58,7 @@ function GeneralInfo({ generalInfo, setGeneralInfo }) {
                 required
               />
             </label>
-            <button type="submit" >
-              Add
-            </button>
+            <button type="submit">Add</button>
           </form>
         ) : (
           <div>

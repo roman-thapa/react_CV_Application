@@ -2,26 +2,28 @@ import { useState } from "react";
 import GeneralInfo from "./components/GeneralInfo";
 import EducationInfo from "./components/EducationInfo";
 import PracticalInfo from "./components/PracticalInfo";
+import CV from "./components/CV";
 
 function App() {
   const [generalInfo, setGeneralInfo] = useState({
-    name: "",
-    email: "",
-    phone: "",
+    name: null,
+    email: null,
+    phone: null,
   });
 
   const [educationInfo, setEducationInfo] = useState({
-    school: "",
-    title: "",
-    date: "",
+    school: null,
+    title: null,
+    date: null,
   });
 
   const [practicalInfo, setPracticalInfo] = useState({
-    company: "",
-    position: "",
-    responsibilities: "",
-    dateFrom: "",
-    dateUntil: "",
+    company: null,
+    position: null,
+    responsibilities: null,
+    working: null,
+    dateFrom: null,
+    dateUntil: null,
   });
 
   return (
@@ -38,6 +40,11 @@ function App() {
       <PracticalInfo 
         practicalInfo={practicalInfo}
         setPracticalInfo={setPracticalInfo}
+      />
+      <CV 
+        generalInfo={generalInfo}
+        educationInfo={educationInfo}
+        practicalInfo={practicalInfo}
       />
     </>
   );

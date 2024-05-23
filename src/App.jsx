@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { nanoid } from 'nanoid';
 import GeneralInfo from "./components/GeneralInfo";
 import EducationInfo from "./components/EducationInfo";
 import PracticalInfo from "./components/PracticalInfo";
@@ -13,6 +14,7 @@ function App() {
 
   const [educationInfo, setEducationInfo] = useState([
     {
+      id: nanoid(),
       school: null,
       title: null,
       date: null,
@@ -21,6 +23,7 @@ function App() {
 
   const [practicalInfo, setPracticalInfo] = useState([
     {
+      id: nanoid(),
       company: null,
       position: null,
       responsibilities: null,
@@ -31,18 +34,21 @@ function App() {
   ]);
 
   const handleAddEducation = () => {
-    setEducationInfo([...educationInfo, { school: "", title: "", date: "" }]);
+    setEducationInfo([
+      ...educationInfo,
+      { id: nanoid(), school: null, title: null, date: null },
+    ]);
   };
 
-  const handleRemoveEducation = (index) => {
+  const handleRemoveEducation = (id) => {
     const updatedEducationInfos = [...educationInfo];
-    updatedEducationInfos.splice(index, 1);
+    updatedEducationInfos.splice(id, 1);
     setEducationInfo(updatedEducationInfos);
   };
 
-  const handleEducationChange = (index, updatedInfo) => {
+  const handleEducationChange = (id, updatedInfo) => {
     const updatedEducationInfos = [...educationInfo];
-    updatedEducationInfos[index] = updatedInfo;
+    updatedEducationInfos[id] = updatedInfo;
     setEducationInfo(updatedEducationInfos);
   };
 
@@ -51,15 +57,15 @@ function App() {
       <h1>CV</h1>
       <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} />
       <button onClick={handleAddEducation}>Add Education</button>
-      {educationInfo.map((info, index) => (
-        <div key={index}>
+      {educationInfo.map((info) => (
+        <div key={info.id}>
           <EducationInfo
             educationInfo={info}
             onChange={(updatedInfo) =>
-              handleEducationChange(index, updatedInfo)
+              handleEducationChange(info.id, updatedInfo)
             }
           />
-          <button onClick={() => handleRemoveEducation(index)}>Remove</button>
+          <button onClick={() => handleRemoveEducation(info.id)}>Remove</button>
         </div>
       ))}
       <PracticalInfo

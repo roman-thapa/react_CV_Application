@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 import GeneralInfo from "./components/GeneralInfo";
 import EducationInfo from "./components/EducationInfo";
 import PracticalInfo from "./components/PracticalInfo";
@@ -40,38 +40,80 @@ function App() {
     ]);
   };
 
-  const handleRemoveEducation = (id) => {
+  const handleAddPracticalInfo = () => {
+    setPracticalInfo([
+      ...practicalInfo,
+      {
+        id: nanoid(),
+        company: '',
+        position: '',
+        responsibilities: '',
+        working: false,
+        dateFrom: '',
+        dateUntil: '',
+      },
+    ]);
+  };
+
+
+  const handleRemoveEducation = (index) => {
     const updatedEducationInfos = [...educationInfo];
-    updatedEducationInfos.splice(id, 1);
+    updatedEducationInfos.splice(index, 1);
     setEducationInfo(updatedEducationInfos);
   };
 
-  const handleEducationChange = (id, updatedInfo) => {
+  const handleRemovePracticalInfo = (index) => {
+    const updatedPracticalInfo = [...practicalInfo];
+    updatedPracticalInfo.splice(index, 1);
+    setPracticalInfo(updatedPracticalInfo);
+  };
+
+
+
+  const handleEducationChange = (index, updatedInfo) => {
     const updatedEducationInfos = [...educationInfo];
-    updatedEducationInfos[id] = updatedInfo;
+    updatedEducationInfos[index] = updatedInfo;
     setEducationInfo(updatedEducationInfos);
   };
+
+  const handlePracticalChange = (index, updatedInfo) => {
+    const updatedPracticalInfo = [...practicalInfo];
+    updatedPracticalInfo[index] = updatedInfo;
+    setPracticalInfo(updatedPracticalInfo);
+  };
+
 
   return (
     <>
       <h1>CV</h1>
       <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} />
       <button onClick={handleAddEducation}>Add Education</button>
-      {educationInfo.map((info) => (
+      {educationInfo.map((info, index) => (
         <div key={info.id}>
           <EducationInfo
             educationInfo={info}
             onChange={(updatedInfo) =>
-              handleEducationChange(info.id, updatedInfo)
+              handleEducationChange(index, updatedInfo)
             }
           />
-          <button onClick={() => handleRemoveEducation(info.id)}>Remove</button>
+          <button onClick={() => handleRemoveEducation(index)}>Remove</button>
         </div>
       ))}
-      <PracticalInfo
-        practicalInfo={practicalInfo}
-        setPracticalInfo={setPracticalInfo}
-      />
+      <button onClick={handleAddPracticalInfo}>Add Practical Experience</button>
+      {practicalInfo.map((info, index) => (
+        <div key={info.id}>
+          <PracticalInfo
+            practicalInfo={info}
+            onChange={(updatedInfo) =>
+              handlePracticalChange(index, updatedInfo)
+            }
+          />
+          <button onClick={() => handleRemovePracticalInfo(index)}>
+            Remove
+          </button>
+        </div>
+      ))}
+
       {/* <CV 
         generalInfo={generalInfo}
         educationInfo={educationInfo}

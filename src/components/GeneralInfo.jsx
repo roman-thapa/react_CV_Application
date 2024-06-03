@@ -1,4 +1,10 @@
 import { useState } from "react";
+import {
+  P,
+  ManuDiv,
+  StyledInput,
+  StyledButton,
+} from "./StyledComponents";
 
 function GeneralInfo({ generalInfo, setGeneralInfo }) {
   const [isEditing, setIsEditing] = useState(true);
@@ -13,12 +19,10 @@ function GeneralInfo({ generalInfo, setGeneralInfo }) {
     e.preventDefault();
     setIsEditing((prev) => !prev);
     setGeneralInfo(formState);
-    
   };
 
   const handleEdit = () => {
     setIsEditing((prev) => !prev);
-    console.log(generalInfo)
   };
 
   return (
@@ -26,9 +30,10 @@ function GeneralInfo({ generalInfo, setGeneralInfo }) {
       <div>
         {isEditing ? (
           <form onSubmit={handleSubmit}>
+            <div>
             <label>
               Name :
-              <input
+              <StyledInput
                 type="text"
                 name="name"
                 value={formState.name}
@@ -36,9 +41,11 @@ function GeneralInfo({ generalInfo, setGeneralInfo }) {
                 required
               />
             </label>
+            </div>
+            <div>
             <label>
               Email:
-              <input
+              <StyledInput
                 type="email"
                 name="email"
                 value={formState.email}
@@ -46,9 +53,11 @@ function GeneralInfo({ generalInfo, setGeneralInfo }) {
                 required
               />
             </label>
+            </div>
+            <div>
             <label>
               Phone No:
-              <input
+              <StyledInput
                 type="tel"
                 name="phone"
                 value={formState.phone}
@@ -58,14 +67,15 @@ function GeneralInfo({ generalInfo, setGeneralInfo }) {
                 required
               />
             </label>
-            <button type="submit">Add</button>
+            </div>
+            <StyledButton type="submit">Add</StyledButton>
           </form>
         ) : (
           <div>
-            <p>Name: {formState.name}</p>
-            <p>Email: {formState.email}</p>
-            <p>Phone: {formState.phone}</p>
-            <button onClick={handleEdit}>Edit</button>
+            <P>Name: {formState.name}</P>
+            <P>Email: {formState.email}</P>
+            <P>Phone: {formState.phone}</P>
+            <StyledButton onClick={handleEdit}>Edit</StyledButton>
           </div>
         )}
       </div>

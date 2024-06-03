@@ -1,4 +1,9 @@
 import {useState} from 'react'
+import {
+  P,
+  StyledInput,
+  StyledButton,
+} from './StyledComponents';
 
 function EducationInfo({educationInfo, setEducationInfo}) {
   const [isEditing, setIsEditing] = useState(true);
@@ -20,54 +25,50 @@ function EducationInfo({educationInfo, setEducationInfo}) {
     console.log(educationInfo)
   }
   return (
-    <>
-      <div>
-        {isEditing ? (
-          <form onSubmit={handleSubmit}>
-            <label>
-              School :
-              <input
-                type="text"
-                name="school"
-                value={formState.school}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Title :
-              <input
-                type="text"
-                name="title"
-                value={formState.title}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Date:
-              <input
-                type="date"
-                name="date"
-                value={formState.date}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <button type="submit" >
-              Add
-            </button>
-          </form>
-        ) : (
+    <div>
+      {isEditing ? (
+        <form onSubmit={handleSubmit}>
           <div>
-            <p>School: {formState.school}</p>
-            <p>Title: {formState.title}</p>
-            <p>Date: {formState.date}</p>
-            <button onClick={handleEdit}>Edit</button>
+          <StyledInput
+            type="text"
+            name="school"
+            value={formState.school}
+            onChange={handleChange}
+            placeholder="School"
+            required
+          />
           </div>
-        )}
-      </div>
-    </>
+          <div>
+          <StyledInput
+            type="text"
+            name="title"
+            value={formState.title}
+            onChange={handleChange}
+            placeholder="Title"
+            required
+          />
+          </div>
+          <div>
+          <StyledInput
+            type="date"
+            name="date"
+            value={formState.date}
+            onChange={handleChange}
+            placeholder="Date"
+            required
+          />
+          </div>
+          <StyledButton type="submit">Save</StyledButton>
+        </form>
+      ) : (
+        <div>
+          <P>School: {formState.school}</P>
+          <P>Title: {formState.title}</P>
+          <P>Date: {formState.date}</P>
+          <StyledButton onClick={handleEdit}>Edit</StyledButton>
+        </div>
+      )}
+    </div>
   )
 }
 

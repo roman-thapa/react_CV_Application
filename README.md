@@ -1,38 +1,37 @@
-# CV Application
+# [CV Application](https://react-cv-application-gray.vercel.app/)
 
-This is a CV (Curriculum Vitae) application where users can input their personal information, education history, and practical experience.
+This is a React-based CV (Curriculum Vitae) application that allows users to input, edit, and display their personal, educational, and practical experience information in a structured format. The application also provides functionality to print the CV.
+
+## Live Demo
+
+[Live Demo](https://react-cv-application-gray.vercel.app/)
 
 ## Features
 
-- **General Information:** Users can input their name, email, and phone number.
-- **Education Information:** Users can add, edit, and remove their education history including school, title, and date attended.
-- **Practical Experience:** Users can add, edit, and remove their practical experience including company, position, responsibilities, and dates worked.
-- **Styling:** The application is styled using styled-components for a modern and clean interface.
+- **General Information Section**: Add, edit, and display general information such as name, email, and phone number.
+- **Educational Experience Section**: Add, edit, and display educational experiences including school name, title of study, and date of study.
+- **Practical Experience Section**: Add, edit, and display practical experiences including company name, position title, main responsibilities, and dates of employment.
+- **Edit and Submit Functionality**: Edit the information and submit to view it in a structured format.
+- **Print CV**: Print the CV without displaying the edit and print buttons for a cleaner layout.
+
+## Usage
+
+1. Fill in the general information including your name, email, and phone number.
+2. Add educational experiences by providing the school name, title of study, and date of study.
+3. Add practical experiences by providing the company name, position title, main responsibilities, and dates of employment.
+4. Use the edit buttons to make changes to the entered information.
+5. Click the "Print CV" button to print your CV.
 
 ## Technologies Used
 
 - React.js
-- Styled Components
-- nanoid (for generating unique IDs)
-
-## Getting Started
-
-1. Clone the repository: `git clone <repository-url>`
-2. Install dependencies: `npm install`
-3. Run the development server: `npm start`
-
-## Usage
-
-1. Fill in your general information in the provided fields.
-2. Click "Add Education" to input your education history.
-3. Click "Add Practical Experience" to input your practical experience.
-4. Edit or remove entries as needed.
-5. Submit your CV when finished.
+- styled-components
+- nanoid
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+Contributions are welcome! Please feel free to open an issue or submit a pull request for any changes.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

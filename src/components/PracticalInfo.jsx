@@ -6,16 +6,13 @@ import {
   StyledCheckbox,
 } from "./StyledComponents";
 
-const PracticalInfo = ({ practicalInfo, onChange }) => {
-  const [isEditing, setIsEditing] = useState(true);
+const PracticalInfo = ({ practicalInfo, setPracticalInfo, isEditing, setIsEditing }) => {
   const [formState, setFormState] = useState(practicalInfo);
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const updatedFormState = { ...formState, [name]: value };
-    setFormState(updatedFormState);
-    onChange(updatedFormState);
+    setFormState({ ...formState, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -29,7 +26,7 @@ const PracticalInfo = ({ practicalInfo, onChange }) => {
     }
     setError(null);
     setIsEditing(false);
-    setIsEditing(false);
+    setPracticalInfo(formState);
   };
 
   const handleEdit = () => {

@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import GeneralInfo from "./components/GeneralInfo";
 import EducationInfo from "./components/EducationInfo";
 import PracticalInfo from "./components/PracticalInfo";
-// import CV from "./components/CV";
+import CV from "./components/CV";
 import { ManuDiv, StyledButton } from "./components/StyledComponents";
 
 function App() {
@@ -33,12 +33,31 @@ function App() {
       dateUntil: null,
     },
   ]);
+
+  const [showCV, setShowCV] = useState(false);
+
+  const [isEditing, setIsEditing] = useState({
+    general: true,
+    education: educationInfo.map(() => true),
+    practical: practicalInfo.map(() => true),
+  });
+
   const addInfo = (setInfo, newInfo) => {
     setInfo((prevInfo) => [...prevInfo, newInfo]);
+    setIsEditing((prevIsEditing) => ({
+      ...prevIsEditing,
+      education: [...prevIsEditing.education, true],
+      practical: [...prevIsEditing.practical, true],
+    }));
   };
 
   const removeInfo = (setInfo, index) => {
     setInfo((prevInfo) => prevInfo.filter((_, i) => i !== index));
+    setIsEditing((prevIsEditing) => ({
+      ...prevIsEditing,
+      education: prevIsEditing.education.filter((_, i) => i !== index),
+      practical: prevIsEditing.practical.filter((_, i) => i !== index),
+    }));
   };
 
   const handleChange = (setInfo, index, updatedInfo) => {
@@ -47,13 +66,31 @@ function App() {
     );
   };
 
+  const handleShowCV = () => {
+    const allEditingFalse =
+      !isEditing.general &&
+      isEditing.education.every((editing) => !editing) &&
+      isEditing.practical.every((editing) => !editing);
+    if (allEditingFalse) {
+      setShowCV(true);
+    } else {
+      alert("Please submit all sections before viewing the CV.");
+    }
+  };
+
+
   return (
-    <>
-      <h1>CV</h1>
+    !showCV ? (
+        <>
+        <h1>CV</h1>
       <div style={{ marginBottom: "20px" }}>
         <GeneralInfo
           generalInfo={generalInfo}
           setGeneralInfo={setGeneralInfo}
+          isEditing={isEditing.general}
+          setIsEditing={(value) =>
+            setIsEditing((prev) => ({ ...prev, general: value }))
+          }
         />
         <hr />
       </div>
@@ -76,8 +113,16 @@ function App() {
           <div key={info.id}>
             <EducationInfo
               educationInfo={info}
-              onChange={(updatedInfo) =>
+              setEducationInfo={(updatedInfo) =>
                 handleChange(setEducationInfo, index, updatedInfo)
+              }
+              isEditing={isEditing.education[index]}
+              setIsEditing={(value) =>
+                setIsEditing((prev) => {
+                  const newEditing = [...prev.education];
+                  newEditing[index] = value;
+                  return { ...prev, education: newEditing };
+                })
               }
             />
             <StyledButton onClick={() => removeInfo(setEducationInfo, index)}>
@@ -108,8 +153,16 @@ function App() {
           <div key={info.id}>
             <PracticalInfo
               practicalInfo={info}
-              onChange={(updatedInfo) =>
+              setPracticalInfo={(updatedInfo) =>
                 handleChange(setPracticalInfo, index, updatedInfo)
+              }
+              isEditing={isEditing.practical[index]}
+              setIsEditing={(value) =>
+                setIsEditing((prev) => {
+                  const newEditing = [...prev.practical];
+                  newEditing[index] = value;
+                  return { ...prev, practical: newEditing };
+                })
               }
             />
             <StyledButton onClick={() => removeInfo(setPracticalInfo, index)}>
@@ -120,13 +173,15 @@ function App() {
         ))}
       </div>
 
-      {/* <CV 
-        generalInfo={generalInfo}
-        educationInfo={educationInfo}
-        practicalInfo={practicalInfo}
-      /> */}
-    </>
-  );
+      <StyledButton onClick={handleShowCV}>Get CV</StyledButton>
+      </>): (
+        <CV 
+          generalInfo={generalInfo}
+          educationInfo={educationInfo}
+          practicalInfo={practicalInfo}
+          setShowCV={() => setShowCV(false)}
+        />
+      ))
 }
 
 export default App;

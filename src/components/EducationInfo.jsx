@@ -5,8 +5,7 @@ import {
   StyledButton,
 } from './StyledComponents';
 
-function EducationInfo({educationInfo, setEducationInfo}) {
-  const [isEditing, setIsEditing] = useState(true);
+function EducationInfo({ educationInfo, setEducationInfo, isEditing, setIsEditing }) {
   const [formState, setFormState] = useState(educationInfo);
 
   const handleChange = (e) => {
@@ -16,13 +15,12 @@ function EducationInfo({educationInfo, setEducationInfo}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsEditing((prev) => !prev);
+    setIsEditing(false);
     setEducationInfo(formState)
   };
 
   const handleEdit = () =>{
-    setIsEditing(prev=>!prev)   
-    console.log(educationInfo)
+    setIsEditing(true)
   }
   return (
     <div>

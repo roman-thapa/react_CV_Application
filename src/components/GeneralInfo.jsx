@@ -1,13 +1,11 @@
 import { useState } from "react";
 import {
   P,
-  ManuDiv,
   StyledInput,
   StyledButton,
 } from "./StyledComponents";
 
-function GeneralInfo({ generalInfo, setGeneralInfo }) {
-  const [isEditing, setIsEditing] = useState(true);
+function GeneralInfo({ generalInfo, setGeneralInfo, isEditing, setIsEditing }) {
   const [formState, setFormState] = useState(generalInfo);
 
   const handleChange = (e) => {
@@ -17,12 +15,12 @@ function GeneralInfo({ generalInfo, setGeneralInfo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsEditing((prev) => !prev);
+    setIsEditing(false);
     setGeneralInfo(formState);
   };
 
   const handleEdit = () => {
-    setIsEditing((prev) => !prev);
+    setIsEditing(true);
   };
 
   return (
